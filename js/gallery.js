@@ -71,8 +71,14 @@ const images = [
     gallery.addEventListener('click' , handlerGetImg);
 
 function handlerGetImg(evt){
+if(evt.currentTarget === evt.target){
+  return; 
+}
+const parent = evt.target.closest('.js-gallery-link');
+console.log(parent);
 
 }
+
 
 
 
@@ -85,7 +91,7 @@ function handlerGetImg(evt){
     function createMarkup (arr){
 return arr.map(({preview, original, description})  =>  `
     <li class="gallery-item">
-        <a class="gallery-link" href="${original}">
+        <a class="gallery-link js-gallery-link" href="${original}">
           <img
             class="gallery-image"
             src="${preview}"
