@@ -74,19 +74,16 @@ function handlerGetImg(evt){
 if(evt.currentTarget === evt.target){
   return; 
 }
-const parent = evt.target.closest('.js-gallery');
-const id = parent.dataset.original;
-console.log(id);
 
+evt.preventDefault();
+const currentId = evt.target.dataset.source;
 
 const instance = basicLightbox.create(`
-<div class="modal">
-<img src="${id}" alt="">
-</div>
+	<img src="${currentId}" width="1112" height="640"/>
 `);
+
 instance.show()
 }
-
 
     function createMarkup (arr){
 return arr.map(({preview, original, description})  =>  `
