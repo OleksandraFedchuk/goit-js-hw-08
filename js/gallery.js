@@ -67,31 +67,31 @@ const images = [
 
     const gallery = document.querySelector(".gallery");
 
-    gallery.insertAdjacentHTML('afterbegin', createMarkup(images));
-    gallery.addEventListener('click' , handlerGetImg);
+gallery.insertAdjacentHTML('afterbegin', createMarkup(images));
+gallery.addEventListener('click' , handlerGetImg);
 
 function handlerGetImg(evt){
 if(evt.currentTarget === evt.target){
   return; 
 }
-const parent = evt.target.closest('.js-gallery-link');
-console.log(parent);
+const parent = evt.target.closest('.js-gallery');
+const id = parent.dataset.original;
+console.log(id);
 
+
+const instance = basicLightbox.create(`
+<div class="modal">
+<img src="${id}" alt="">
+</div>
+`);
+instance.show()
 }
-
-
-
-
-
-
-
-
 
 
     function createMarkup (arr){
 return arr.map(({preview, original, description})  =>  `
-    <li class="gallery-item">
-        <a class="gallery-link js-gallery-link" href="${original}">
+    <li class="gallery-item js-gallery" data-original="${original}">
+        <a class="gallery-link " href="${original}">
           <img
             class="gallery-image"
             src="${preview}"
